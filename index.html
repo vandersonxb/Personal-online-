@@ -1,69 +1,853 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanderson Personal Online</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome para os Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>Vanderson | Personal Online</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        body {
-            background-color: #000000;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --yellow: #FFE600;
+            --white: #FFFFFF;
+            --black: #000000;
+            --graphite: #1C1C1C;
+            --dark: #0b0b0b;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .page {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.72),
+                    rgba(0,0,0,.88)
+                ),
+                #111;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 760px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #000 0%,
+                    rgba(0,0,0,.92) 35%,
+                    rgba(0,0,0,.35) 100%
+                );
+        }
+
+        .hero-photo {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 62%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    90deg,
+                    #000 0%,
+                    rgba(0,0,0,.95) 25%,
+                    rgba(0,0,0,.45) 65%,
+                    rgba(0,0,0,.15)
+                );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 55%;
+            padding: 60px 40px;
+        }
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 54px;
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+            letter-spacing: -7px;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--yellow);
+        }
+
+        .brand-text {
+            border-left: 2px solid var(--yellow);
+            padding-left: 12px;
+        }
+
+        .brand-name {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .brand-sub {
+            color: var(--yellow);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        /* =========================
+           HERO TEXT
+        ========================= */
+
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(48px, 7vw, 78px);
+            line-height: .95;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero-description {
+            margin-top: 28px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .hero-description strong {
+            color: var(--yellow);
+        }
+
+        /* =========================
+           ESPECIALIDADES
+        ========================= */
+
+        .specialties {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: -45px 40px 30px;
+        }
+
+        .specialty {
+            border: 1px solid var(--yellow);
+            background: rgba(0,0,0,.9);
+            border-radius: 18px;
+            padding: 22px 15px;
+            text-align: center;
+        }
+
+        .specialty i {
+            font-size: 32px;
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .specialty h3 {
+            font-size: 14px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .specialty span {
+            color: var(--yellow);
+        }
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .buttons {
+            padding: 10px 40px 40px;
+        }
+
+        .button {
+            width: 100%;
+            min-height: 75px;
+            margin-bottom: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            border-radius: 18px;
+            text-decoration: none;
+
+            font-size: 19px;
+            font-weight: 900;
+
+            transition: .2s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button i {
+            font-size: 30px;
+        }
+
+        /* WhatsApp */
+
+        .whatsapp {
+            background: var(--yellow);
+            color: #000;
+        }
+
+        /* Tecnofit */
+
+        .tecnofit {
+            background: #080808;
+            color: white;
+            border: 2px solid var(--yellow);
+        }
+
+        .tecnofit i {
+            color: var(--yellow);
+        }
+
+        /* Instagram */
+
+        .instagram {
+            background:
+                linear-gradient(
+                    90deg,
+                    #405DE6,
+                    #833AB4,
+                    #E1306C,
+                    #F77737
+                );
+            color: white;
+        }
+
+        /* =========================
+           COMO TRABALHAMOS
+        ========================= */
+
+        .how {
+            margin: 10px 40px 45px;
+            border: 1px solid var(--yellow);
+            border-radius: 20px;
+            padding: 35px 20px;
+            background: rgba(0,0,0,.7);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 34px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .section-title span {
+            color: var(--yellow);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .step {
+            text-align: center;
+            padding: 10px 15px;
+            border-right: 1px solid #555;
+        }
+
+        .step:last-child {
+            border-right: none;
+        }
+
+        .step i {
+            color: var(--yellow);
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #aaa;
+        }
+
+        /* =========================
+           FRASE
+        ========================= */
+
+        .quote {
+            padding: 30px 50px 55px;
+            text-align: center;
+        }
+
+        .quote .marks {
+            color: var(--yellow);
+            font-size: 55px;
+            line-height: .5;
+        }
+
+        .quote p {
+            font-size: 22px;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .quote strong {
+            color: var(--yellow);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 2px solid var(--yellow);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            font-size: 42px;
+            font-weight: 900;
+            font-style: italic;
+        }
+
+        .footer-logo span {
+            color: var(--yellow);
+        }
+
+        footer strong {
+            font-size: 14px;
+        }
+
+        footer small {
+            display: block;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .footer-right {
+            color: #aaa;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .footer-right strong {
+            color: var(--yellow);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .hero {
+                min-height: 700px;
+                align-items: flex-end;
+            }
+
+            .hero-photo {
+                width: 100%;
+                height: 75%;
+                opacity: .85;
+                object-position: center top;
+            }
+
+            .hero-overlay {
+                background:
+                    linear-gradient(
+                        180deg,
+                        #000 0%,
+                        rgba(0,0,0,.75) 25%,
+                        rgba(0,0,0,.3) 55%,
+                        #000 100%
+                    );
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            .brand {
+                margin-bottom: 35px;
+            }
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .brand-sub {
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 45px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .specialties {
+                grid-template-columns: 1fr;
+                margin: -20px 20px 25px;
+            }
+
+            .specialty {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                padding: 15px;
+            }
+
+            .specialty i {
+                margin: 0;
+                font-size: 25px;
+            }
+
+            .buttons {
+                padding: 10px 20px 30px;
+            }
+
+            .button {
+                font-size: 15px;
+                min-height: 65px;
+                padding: 10px;
+            }
+
+            .button i {
+                font-size: 24px;
+            }
+
+            .how {
+                margin: 10px 20px 35px;
+                padding: 25px 12px;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .step {
+                border-right: none;
+                border-bottom: 1px solid #444;
+                padding-bottom: 20px;
+            }
+
+            .step:nth-child(3),
+            .step:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .quote {
+                padding: 20px 25px 40px;
+            }
+
+            .quote p {
+                font-size: 17px;
+            }
+
+            footer {
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-right {
+                text-align: center;
+            }
+        }
+
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
 
-    <!-- Card Principal -->
-    <div class="w-full max-w-sm bg-[#121212] border-2 border-[#d97706] rounded-3xl p-6 text-center shadow-2xl flex flex-col items-center">
-        
-        <!-- Título Principal -->
-        <h1 class="text-4xl font-extrabold text-[#d97706] tracking-wider mb-1">
-            Vanderson
-        </h1>
-        <h2 class="text-2xl font-bold text-[#d97706] mb-3">
-            Personal Online
-        </h2>
 
-        <!-- Subtítulo / Especialidades -->
-        <p class="text-gray-300 text-sm font-medium mb-8 leading-snug px-2">
-            Treinos Personalizados • Musculação Avançada • Emagrecimento
-        </p>
+<body>
 
-        <!-- Container de Botões -->
-        <div class="w-full space-y-4 mb-8">
-            
-            <!-- Botão App Tecnofit -->
-            <a href="https://app.tecnofit.com.br/signup?token=MjA5OTgw" target="_blank" 
-               class="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-base">
-                <i class="fa-solid fa-dumbbell text-xl"></i>
-                <span>Acesse seu treino no App Tecnofit</span>
-            </a>
+<div class="page">
 
-            <!-- Botão WhatsApp Vanderson -->
-            <a href="https://wa.me/5541992317565" target="_blank" 
-               class="w-full bg-[#10b981] hover:bg-[#059669] text-white font-semibold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-base">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <span>Vanderson • (41) 99231-7565</span>
-            </a>
+    <!-- =========================
+         HERO
+    ========================== -->
 
-            <!-- Botão Instagram Vanderson -->
-            <a href="https://instagram.com/vanderpersonal.trainer" target="_blank" 
-               class="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-90 text-white font-semibold py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-base">
-                <i class="fa-brands fa-instagram text-2xl"></i>
-                <span>@Vanderson | personal online</span>
-            </a>
+    <section class="hero">
+
+        <!-- SUA FOTO -->
+        <img
+            src="vanderson.png"
+            alt="Vanderson - Personal Online"
+            class="hero-photo"
+        >
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <!-- MARCA -->
+
+            <div class="brand">
+
+                <div class="logo">
+                    V<span>X</span>
+                </div>
+
+                <div class="brand-text">
+                    <div class="brand-name">
+                        VANDERSON
+                    </div>
+
+                    <div class="brand-sub">
+                        PERSONAL ONLINE
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <h1>
+                TREINE COM<br>
+                <span>ESTRATÉGIA.</span><br>
+                EVOLUA COM<br>
+                <span>RESULTADOS.</span>
+            </h1>
+
+
+            <p class="hero-description">
+                Treinos personalizados para transformar
+                seu <strong>corpo e sua vida.</strong>
+            </p>
 
         </div>
 
-        <!-- Rodapé -->
-        <footer class="text-gray-500 text-xs leading-relaxed">
-            © 2026 Vanderson Personal Online • Transformando corpos e vidas
-        </footer>
+    </section>
 
-    </div>
+
+    <!-- =========================
+         ESPECIALIDADES
+    ========================== -->
+
+    <section class="specialties">
+
+        <div class="specialty">
+            <i class="fa-solid fa-dumbbell"></i>
+            <h3>
+                MUSCULAÇÃO<br>
+                <span>AVANÇADA</span>
+            </h3>
+        </div>
+
+        <div class="specialty">
+            <i class="fa-solid fa-fire"></i>
+            <h3>
+                EMAGRECIMENTO<br>
+                <span>SAUDÁVEL</span>
+            </h3>
+        </div>
+
+        <div class="specialty">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>
+                EVOLUÇÃO<br>
+                <span>CONSTANTE</span>
+            </h3>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOTÕES
+    ========================== -->
+
+    <section class="buttons">
+
+        <!-- CONSULTORIA -->
+
+        <a
+            href="https://wa.me/5541992317565?text=Ol%C3%A1%20Vanderson!%20Quero%20saber%20como%20funciona%20a%20consultoria%20Personal%20Online."
+            target="_blank"
+            class="button whatsapp"
+        >
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <span>
+                QUERO COMEÇAR MINHA CONSULTORIA
+            </span>
+
+        </a>
+
+
+        <!-- TECNOFIT -->
+
+        <a
+            href="https://app.tecnofit.com.br/signup?token=MjA5OTgw"
+            target="_blank"
+            class="button tecnofit"
+        >
+
+            <i class="fa-solid fa-dumbbell"></i>
+
+            <span>
+                JÁ SOU ALUNO • ACESSAR TREINO
+            </span>
+
+        </a>
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+            href="https://instagram.com/vanderpersonal.trainer"
+            target="_blank"
+            class="button instagram"
+        >
+
+            <i class="fa-brands fa-instagram"></i>
+
+            <span>
+                SEGUIR NO INSTAGRAM
+            </span>
+
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         COMO TRABALHAMOS
+    ========================== -->
+
+    <section class="how">
+
+        <h2 class="section-title">
+            COMO <span>TRABALHAMOS:</span>
+        </h2>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <i class="fa-solid fa-clipboard-list"></i>
+
+                <h3>
+                    Treino<br>
+                    Personalizado
+                </h3>
+
+                <p>
+                    De acordo com
+                    seu objetivo.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <i class="fa-solid fa-utensils"></i>
+
+                <h3>
+                    Orientação<br>
+                    Nutricional
+                </h3>
+
+                <p>
+                    Estratégias que
+                    funcionam.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <i class="fa-solid fa-comments"></i>
+
+                <h3>
+                    Suporte<br>
+                    Direto
+                </h3>
+
+                <p>
+                    Acompanhamento
+                    constante.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>
+                    Resultados<br>
+                    Reais
+                </h3>
+
+                <p>
+                    Com método
+                    e consistência.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FRASE
+    ========================== -->
+
+    <section class="quote">
+
+        <div class="marks">
+            “
+        </div>
+
+        <p>
+            O foco não é no peso que você move,
+            e sim no corpo que você
+            <strong>transforma.</strong>
+        </p>
+
+        <div class="marks">
+            ”
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                V<span>X</span>
+            </div>
+
+            <div>
+                <strong>
+                    VANDERSON | PERSONAL ONLINE
+                </strong>
+
+                <small>
+                    Treinamento personalizado
+                    para seus objetivos.
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <strong>FOCO</strong>
+            &nbsp; • &nbsp;
+
+            <strong>DISCIPLINA</strong>
+            &nbsp; • &nbsp;
+
+            <strong>RESULTADOS</strong>
+
+        </div>
+
+    </footer>
+
+</div>
 
 </body>
 </html>
+﻿
